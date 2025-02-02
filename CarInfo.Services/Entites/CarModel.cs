@@ -1,33 +1,33 @@
-﻿namespace CarInfo.Services.Entites;
+﻿using Newtonsoft.Json;
 
-using System.Text.Json.Serialization;
+namespace CarInfo.Services.Entites;
 
 public class CarModelResponse
 {
-    [JsonPropertyName("Count")]
+    [JsonProperty("Count")]
     public int Count { get; set; }
 
-    [JsonPropertyName("Message")]
+    [JsonProperty("Message")]
     public string Message { get; set; } = null!;
 
-    [JsonPropertyName("SearchCriteria")]
+    [JsonProperty("SearchCriteria")]
     public string? SearchCriteria { get; set; }
 
-    [JsonPropertyName("Results")]
+    [JsonProperty("Results")]
     public List<CarModel>? CarModelList { get; set; }
 }
 
 public class CarModel
 {
-    [JsonPropertyName("Make_ID")]
+    [JsonProperty("Make_ID")]
     public int MakeID { get; set; }
 
-    [JsonPropertyName("Make_Name")]
+    [JsonProperty("Make_Name")]
     public string MakeName { get; set; } = null!;
 
-    [JsonPropertyName("Model_ID")]
+    [JsonProperty("Model_ID")]
     public int ModelID { get; set; }
 
-    [JsonPropertyName("Model_Name")]
+    [JsonProperty("Model_Name")]
     public string ModelName { get; set; } = null!;
 }
