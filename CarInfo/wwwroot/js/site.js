@@ -4,6 +4,14 @@
     initDatePicker();
 });
 
+$(document).ajaxError(function (event, jqxhr, settings, thrownError) {
+    if (jqxhr.responseJSON && jqxhr.responseJSON.message) {
+        Swal.fire("Error", jqxhr.responseJSON.message, "error");
+    } else {
+        Swal.fire("Error", "An unexpected error occurred.", "error");
+    }
+});
+
 function initSelect2() {
     $("#carMake").select2({ placeholder: "Select a Car Make", allowClear: true });
 }
@@ -36,7 +44,7 @@ function getVehicleTypes() {
     }
 
     $.get(`/Index?handler=VehicleTypes&makeId=${makeId}`, function (data) {
-        if (data.vehicleTypeList.length === 0) {
+        if (data.count === 0) {
             Swal.fire("No Data", "No vehicle types found for this make.", "info");
             return;
         }
@@ -61,7 +69,7 @@ function getCarModels() {
     }
 
     $.get(`/Index?handler=CarModels&makeId=${makeId}&modelYear=${modelYear}`, function (data) {
-        if (data.carModelList.length === 0) {
+        if (data.count === 0) {
             Swal.fire("No Data", "No car models found for this make and year.", "info");
             return;
         }
